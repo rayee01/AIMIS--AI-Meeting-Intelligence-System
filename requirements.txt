@@ -1,0 +1,9 @@
+streamlit
+google-genai
+gtts
+sounddevice
+soundfile
+numpy
+SpeechRecognition
+pydub
+soundcard

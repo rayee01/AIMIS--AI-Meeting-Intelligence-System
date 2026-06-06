@@ -1,0 +1,205 @@
+    0 Microsoft Sound Mapper - Input, MME (2 in, 0 out)
+>   1 Microphone Array (Realtek(R) Au, MME (2 in, 0 out)
+    2 Voicemeeter Out B2 (VB-Audio Vo, MME (8 in, 0 out)
+    3 CABLE Output (VB-Audio Virtual , MME (16 in, 0 out)
+    4 Voicemeeter Out A1 (VB-Audio Vo, MME (8 in, 0 out)
+    5 Voicemeeter Out A3 (VB-Audio Vo, MME (8 in, 0 out)
+    6 Voicemeeter Out A2 (VB-Audio Vo, MME (8 in, 0 out)
+    7 Voicemeeter Out A4 (VB-Audio Vo, MME (8 in, 0 out)
+    8 Voicemeeter Out B3 (VB-Audio Vo, MME (8 in, 0 out)
+    9 Voicemeeter Out A5 (VB-Audio Vo, MME (8 in, 0 out)
+   10 Voicemeeter Out B1 (VB-Audio Vo, MME (8 in, 0 out)
+   11 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
+<  12 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
+   13 Voicemeeter AUX Input (VB-Audio, MME (0 in, 8 out)
+   14 Voicemeeter In 4 (VB-Audio Voic, MME (0 in, 8 out)
+   15 Voicemeeter VAIO3 Input (VB-Aud, MME (0 in, 8 out)
+   16 Voicemeeter In 2 (VB-Audio Voic, MME (0 in, 8 out)
+   17 Voicemeeter Input (VB-Audio Voi, MME (0 in, 8 out)
+   18 Voicemeeter In 5 (VB-Audio Voic, MME (0 in, 8 out)
+   19 Voicemeeter In 1 (VB-Audio Voic, MME (0 in, 8 out)
+   20 CABLE In 16ch (VB-Audio Virtual, MME (0 in, 16 out)
+   21 Voicemeeter In 3 (VB-Audio Voic, MME (0 in, 8 out)
+   22 CABLE Input (VB-Audio Virtual C, MME (0 in, 16 out)
+   23 Primary Sound Capture Driver, Windows DirectSound (2 in, 0 out)
+   24 Microphone Array (Realtek(R) Audio), Windows DirectSound (2 in, 0 out)
+   25 Voicemeeter Out B2 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   26 CABLE Output (VB-Audio Virtual Cable), Windows DirectSound (16 in, 0 out)
+   27 Voicemeeter Out A1 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   28 Voicemeeter Out A3 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   29 Voicemeeter Out A2 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   30 Voicemeeter Out A4 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   31 Voicemeeter Out B3 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   32 Voicemeeter Out A5 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   33 Voicemeeter Out B1 (VB-Audio Voicemeeter VAIO), Windows DirectSound (8 in, 0 out)
+   34 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+   35 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
+   36 Voicemeeter AUX Input (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   37 Voicemeeter In 4 (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   38 Voicemeeter VAIO3 Input (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   39 Voicemeeter In 2 (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   40 Voicemeeter Input (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   41 Voicemeeter In 5 (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   42 Voicemeeter In 1 (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   43 CABLE In 16ch (VB-Audio Virtual Cable), Windows DirectSound (0 in, 16 out)
+   44 Voicemeeter In 3 (VB-Audio Voicemeeter VAIO), Windows DirectSound (0 in, 8 out)
+   45 CABLE Input (VB-Audio Virtual Cable), Windows DirectSound (0 in, 16 out)
+   46 Voicemeeter AUX Input (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   47 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
+   48 Voicemeeter In 4 (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   49 Voicemeeter VAIO3 Input (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   50 Voicemeeter In 2 (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   51 Voicemeeter Input (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   52 Voicemeeter In 5 (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   53 Voicemeeter In 1 (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   54 CABLE In 16ch (VB-Audio Virtual Cable), Windows WASAPI (0 in, 2 out)
+   55 Voicemeeter In 3 (VB-Audio Voicemeeter VAIO), Windows WASAPI (0 in, 2 out)
+   56 CABLE Input (VB-Audio Virtual Cable), Windows WASAPI (0 in, 2 out)
+   57 Voicemeeter Out B2 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   58 CABLE Output (VB-Audio Virtual Cable), Windows WASAPI (2 in, 0 out)
+   59 Voicemeeter Out A1 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   60 Voicemeeter Out A3 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   61 Voicemeeter Out A2 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   62 Voicemeeter Out A4 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   63 Voicemeeter Out B3 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   64 Voicemeeter Out A5 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   65 Microphone Array (Realtek(R) Audio), Windows WASAPI (2 in, 0 out)
+   66 Voicemeeter Out B1 (VB-Audio Voicemeeter VAIO), Windows WASAPI (2 in, 0 out)
+   67 Headphones (), Windows WDM-KS (0 in, 2 out)
+   68 Speakers 1 (Realtek HD Audio output with HAP), Windows WDM-KS (0 in, 2 out)
+   69 Speakers 2 (Realtek HD Audio output with HAP), Windows WDM-KS (0 in, 2 out)
+   70 PC Speaker (Realtek HD Audio output with HAP), Windows WDM-KS (2 in, 0 out)
+   71 Microphone (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
+   72 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
+   73 Microphone Array (Realtek HD Audio Mic Array input), Windows WDM-KS (2 in, 0 out)
+   74 Headphones (Realtek HD Audio 2nd output), Windows WDM-KS (0 in, 2 out)
+   75 Output (Voicemeeter Point 3), Windows WDM-KS (0 in, 8 out)
+   76 Input (Voicemeeter Point 3), Windows WDM-KS (8 in, 0 out)
+   77 Output (Voicemeeter Point 6), Windows WDM-KS (0 in, 8 out)
+   78 Input (Voicemeeter Point 6), Windows WDM-KS (8 in, 0 out)
+   79 Voicemeeter Out 1 (Voicemeeter Point 1), Windows WDM-KS (8 in, 0 out)
+   80 Voicemeeter Out 4 (Voicemeeter Point 4), Windows WDM-KS (8 in, 0 out)
+   81 Voicemeeter Out 7 (Voicemeeter Point 7), Windows WDM-KS (8 in, 0 out)
+   82 Output (Voicemeeter Point 1), Windows WDM-KS (0 in, 8 out)
+   83 Input (Voicemeeter Point 1), Windows WDM-KS (8 in, 0 out)
+   84 Output (Voicemeeter Point 4), Windows WDM-KS (0 in, 8 out)
+   85 Input (Voicemeeter Point 4), Windows WDM-KS (8 in, 0 out)
+   86 Output (Voicemeeter Point 7), Windows WDM-KS (0 in, 8 out)
+   87 Input (Voicemeeter Point 7), Windows WDM-KS (8 in, 0 out)
+   88 Voicemeeter Out 2 (Voicemeeter Point 2), Windows WDM-KS (8 in, 0 out)
+   89 Voicemeeter Out 5 (Voicemeeter Point 5), Windows WDM-KS (8 in, 0 out)
+   90 Voicemeeter Out 8 (Voicemeeter Point 8), Windows WDM-KS (8 in, 0 out)
+   91 Output (Voicemeeter Point 2), Windows WDM-KS (0 in, 8 out)
+   92 Input (Voicemeeter Point 2), Windows WDM-KS (8 in, 0 out)
+   93 Output (Voicemeeter Point 5), Windows WDM-KS (0 in, 8 out)
+   94 Input (Voicemeeter Point 5), Windows WDM-KS (8 in, 0 out)
+   95 Output (Voicemeeter Point 8), Windows WDM-KS (0 in, 8 out)
+   96 Input (Voicemeeter Point 8), Windows WDM-KS (8 in, 0 out)
+   97 Voicemeeter Out 3 (Voicemeeter Point 3), Windows WDM-KS (8 in, 0 out)
+   98 Voicemeeter Out 6 (Voicemeeter Point 6), Windows WDM-KS (8 in, 0 out)
+   99 CABLE Output (VB-Audio Point), Windows WDM-KS (16 in, 0 out)
+  100 Output (VB-Audio Point), Windows WDM-KS (0 in, 16 out)
+  101 Input (VB-Audio Point), Windows WDM-KS (16 in, 0 out)
+  102 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Rockerz 460)), Windows WDM-KS (0 in, 1 out)
+  103 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Rockerz 460)), Windows WDM-KS (1 in, 0 out)
+  104 Headphones (), Windows WDM-KS (0 in, 2 out)
+  105 Headphones (), Windows WDM-KS (0 in, 2 out)
+  106 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(OPPO Enco Buds2)), Windows WDM-KS (0 in, 1 out)
+  107 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(OPPO Enco Buds2)), Windows WDM-KS (1 in, 0 out)
+  108 Headphones (), Windows WDM-KS (0 in, 2 out)
+  109 Headphones (), Windows WDM-KS (0 in, 2 out)
+  110 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(AirDoze Grand Pro)), Windows WDM-KS (0 in, 1 out)
+  111 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(AirDoze Grand Pro)), Windows WDM-KS (1 in, 0 out)
+  112 Input (), Windows WDM-KS (2 in, 0 out)
+  113 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(boAt Stone Grenade)), Windows WDM-KS (0 in, 1 out)
+  114 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(boAt Stone Grenade)), Windows WDM-KS (1 in, 0 out)
+  115 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(OnePlus Nord Buds 2r)), Windows WDM-KS (0 in, 1 out)
+  116 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(OnePlus Nord Buds 2r)), Windows WDM-KS (1 in, 0 out)
+  117 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Air Buds Mini)), Windows WDM-KS (0 in, 1 out)
+  118 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Air Buds Mini)), Windows WDM-KS (1 in, 0 out)
+  119 Headphones (), Windows WDM-KS (0 in, 2 out)
+  120 Headphones (), Windows WDM-KS (0 in, 2 out)
+  121 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Rockerz 255 Pro)), Windows WDM-KS (0 in, 1 out)
+  122 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Rockerz 255 Pro)), Windows WDM-KS (1 in, 0 out)
+  123 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes Alpha)), Windows WDM-KS (0 in, 1 out)
+  124 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes Alpha)), Windows WDM-KS (1 in, 0 out)
+  125 Headphones (), Windows WDM-KS (0 in, 2 out)
+  126 Headphones (), Windows WDM-KS (0 in, 2 out)
+  127 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(boAt Stone 300)), Windows WDM-KS (0 in, 1 out)
+  128 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(boAt Stone 300)), Windows WDM-KS (1 in, 0 out)
+  129 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(XECH EON)), Windows WDM-KS (0 in, 1 out)
+  130 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(XECH EON)), Windows WDM-KS (1 in, 0 out)
+  131 Headphones (), Windows WDM-KS (0 in, 2 out)
+  132 Headphones (), Windows WDM-KS (0 in, 2 out)
+  133 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Hrishita’s AirPods Pro)), Windows WDM-KS (0 in, 1 out)
+  134 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Hrishita’s AirPods Pro)), Windows WDM-KS (1 in, 0 out)
+  135 Headphones (), Windows WDM-KS (0 in, 2 out)
+  136 Headphones (), Windows WDM-KS (0 in, 2 out)
+  137 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Noise Buds VS102 Plus)), Windows WDM-KS (0 in, 1 out)
+  138 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Noise Buds VS102 Plus)), Windows WDM-KS (1 in, 0 out)
+  139 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Stone 193 Pro)), Windows WDM-KS (0 in, 1 out)
+  140 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Stone 193 Pro)), Windows WDM-KS (1 in, 0 out)
+  141 Speakers (Nahimic Easy Surround), Windows WDM-KS (0 in, 8 out)
+  142 Headphones (), Windows WDM-KS (0 in, 2 out)
+  143 Headphones (), Windows WDM-KS (0 in, 2 out)
+  144 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(boAt Rockerz)), Windows WDM-KS (0 in, 1 out)
+  145 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(boAt Rockerz)), Windows WDM-KS (1 in, 0 out)
+  146 Speakers (Nahimic mirroring Wave Speaker), Windows WDM-KS (0 in, 2 out)
+  147 Headphones (), Windows WDM-KS (0 in, 2 out)
+  148 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Boult Audio Airbass)), Windows WDM-KS (0 in, 1 out)
+  149 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Boult Audio Airbass)), Windows WDM-KS (1 in, 0 out)
+  150 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes 138)), Windows WDM-KS (0 in, 1 out)
+  151 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes 138)), Windows WDM-KS (1 in, 0 out)
+  152 Headphones (), Windows WDM-KS (0 in, 2 out)
+  153 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Boult Audio Airbass)), Windows WDM-KS (0 in, 1 out)
+  154 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Boult Audio Airbass)), Windows WDM-KS (1 in, 0 out)
+  155 Output (@System32\drivers\bthhfenum.sys,#4;%1 Hands-Free HF Audio%0
+;(VARTIKA GUPTA's S21 FE)), Windows WDM-KS (0 in, 1 out)
+  156 Input (@System32\drivers\bthhfenum.sys,#4;%1 Hands-Free HF Audio%0
+;(VARTIKA GUPTA's S21 FE)), Windows WDM-KS (1 in, 0 out)
+  157 Headphones (), Windows WDM-KS (0 in, 2 out)
+  158 Headphones (), Windows WDM-KS (0 in, 2 out)
+  159 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes 141)), Windows WDM-KS (0 in, 1 out)
+  160 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes 141)), Windows WDM-KS (1 in, 0 out)
+  161 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes 120)), Windows WDM-KS (0 in, 1 out)
+  162 Headset (@System32\drivers\bthhfenum.sys,#2;%1 Hands-Free%0
+;(Airdopes 120)), Windows WDM-KS (1 in, 0 out)
+  163 Headphones (), Windows WDM-KS (0 in, 2 out)
+  164 Headphones (), Windows WDM-KS (0 in, 2 out)

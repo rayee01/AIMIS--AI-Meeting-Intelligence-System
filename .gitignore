@@ -1,0 +1,42 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+aimis_data.db
+*.sqlite3
+*.db
+
+# Audio generated/recorded files
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.ogg
+meeting_record.wav
+uploaded_audio.*
+
+# Logs and databases
+*.log
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
