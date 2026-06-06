@@ -1,5 +1,5 @@
-# 🚀 RAPIDS  
-### Real-time AI Platform for Intelligent Discussions & Meeting Summaries
+# 🚀 AIMIS
+### AIMIS- AI Meeting Intelligence System
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue)
 ![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-red)
@@ -11,7 +11,7 @@
 
 ## 📌 Overview
 
-RAPIDS is a real-time AI meeting assistant that listens to conversations, transcribes speech, generates intelligent responses, and speaks back during live meetings.
+AIMIS- AI Meeting Intelligence Systemthat listens to conversations, transcribes speech, generates intelligent responses, and speaks back during live meetings.
 
 It also creates structured Minutes of Meeting (MoM) and stores session archives, making it useful for meeting automation, documentation, and productivity.
 
