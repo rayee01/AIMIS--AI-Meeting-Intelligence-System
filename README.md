@@ -6,9 +6,16 @@
 
 ## Setup
 
+1. Rename `.env.example` to `.env` and add your Google Gemini API key:
+   `GOOGLE_API_KEY=your_actual_key_here`
+
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
-export GOOGLE_API_KEY=your_google_api_key
+```
+
+3. Run the app:
+```bash
 streamlit run app.py
 ```
 
