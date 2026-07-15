@@ -1,2 +1,4 @@
 libportaudio2
 portaudio19-dev
+libpulse0
+libpulse-dev
