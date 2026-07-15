@@ -504,32 +504,28 @@ with tab_transcribe:
 
     col_live, col_upload = st.columns([1, 1], gap="large")
     
-   with col_live:
-    st.markdown("#### 🔴 Live Recording", unsafe_allow_html=True)
-    st.markdown(
-        "<p style='color: #94A3B8; font-size: 0.9rem;'>Record directly from your browser.</p>",
-        unsafe_allow_html=True,
-    )
+    with col_live:
+        st.markdown("#### 🔴 Live Recording", unsafe_allow_html=True)
+        st.markdown(
+            "<p style='color: #94A3B8; font-size: 0.9rem;'>Record directly from your browser.</p>",
+            unsafe_allow_html=True,
+        )
+        audio = mic_recorder(
+            start_prompt="🎙️ Start Recording",
+            stop_prompt="⏹️ Stop Recording",
+            just_once=True,
+            use_container_width=True,
+        )
+        if audio:
+            with open("meeting.wav", "wb") as f:
+                f.write(audio["bytes"])
+            st.success("Recording completed!")
+            transcript = transcribe_audio("meeting.wav", client)
+            if transcript:
+                st.session_state.last_transcript = transcript
+                st.success("Transcription completed!")
+                st.write(transcript)
 
-    audio = mic_recorder(
-        start_prompt="🎙️ Start Recording",
-        stop_prompt="⏹️ Stop Recording",
-        just_once=True,
-        use_container_width=True,
-    )
-
-    if audio:
-        with open("meeting.wav", "wb") as f:
-            f.write(audio["bytes"])
-
-        st.success("Recording completed!")
-
-        transcript = transcribe_audio("meeting.wav", client)
-
-        if transcript:
-            st.session_state.last_transcript = transcript
-            st.success("Transcription completed!")
-            st.write(transcript)
     device_id = int(selected_device.split("]")[0].replace("[", ""))
 
     btn1, btn2 = st.columns([1,1])
