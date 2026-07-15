@@ -3,11 +3,12 @@ import streamlit as st
 from google import genai
 from google.genai import types
 import os
+import traceback
 from datetime import datetime
 import time
 
 from whisper_utils import transcribe_audio
-from audio_utils import play_audio_to_virtual_mic, text_to_speech, get_input_devices, start_recording, stop_recording_and_save
+from audio_utils import text_to_speech
 import db_utils
 
 # Initialize Database
@@ -28,12 +29,6 @@ client = genai.Client(api_key=api_key)
 # --- Session State ---
 if "messages" not in st.session_state:
     st.session_state.messages = []
-if "is_recording" not in st.session_state:
-    st.session_state.is_recording = False
-if "paused" not in st.session_state:
-    st.session_state.paused = False
-if "last_audio_file" not in st.session_state:
-    st.session_state.last_audio_file = ""
 if "last_transcript" not in st.session_state:
     st.session_state.last_transcript = ""
 if "last_audio_bytes" not in st.session_state:
@@ -72,7 +67,7 @@ def generate_response_with_history(user_input, role_context=None):
             ))
         chat = client.chats.create(model="gemini-2.5-flash", history=history)
         full_prompt = (role_context + "\n\n" if role_context else "") + user_input
-        
+
         max_retries = 3
         delay = 2
         for attempt in range(max_retries):
@@ -90,6 +85,7 @@ def generate_response_with_history(user_input, role_context=None):
                     raise e
     except Exception as e:
         st.error(f"Gemini API Error: {e}")
+        st.code(traceback.format_exc())
         return None
 
 # --- MoM Generator ---
@@ -190,7 +186,7 @@ css_template = """
         font-family: 'Inter', sans-serif !important;
         color: var(--text) !important;
     }
-    
+
     /* Force Widget Labels to correct color */
     [data-testid="stWidgetLabel"] p {
         color: var(--text) !important;
@@ -441,7 +437,7 @@ css_template = """
         font-weight: 600 !important;
         color: var(--text) !important;
     }
-    
+
     .audio-visualizer {
         display: flex;
         justify-content: center;
@@ -494,6 +490,12 @@ st.markdown('<div class="purple-divider"></div>', unsafe_allow_html=True)
 tab_transcribe, tab_chat, tab_history, tab_mom, tab_archive = st.tabs(["🎙️ Transcription", "💬 Chat", "📚 History", "📝 Minutes", "🗄️ Archive"])
 
 # ========================= TAB: TRANSCRIPTION =========================
+# NOTE: Local-device recording (sounddevice + device_index, VB-CABLE playback) was
+# removed here. Those rely on hardware attached to the machine running the app.
+# On Streamlit Cloud the server has no physical mic/speaker, so those features
+# would fail silently or throw errors. Browser-based recording (mic_recorder)
+# and file upload both work fine on Cloud since audio capture happens in the
+# user's browser, not on the server.
 with tab_transcribe:
     st.markdown("""
     <div class="section-header">
@@ -503,7 +505,7 @@ with tab_transcribe:
     """, unsafe_allow_html=True)
 
     col_live, col_upload = st.columns([1, 1], gap="large")
-    
+
     with col_live:
         st.markdown("#### 🔴 Live Recording", unsafe_allow_html=True)
         st.markdown(
@@ -520,67 +522,26 @@ with tab_transcribe:
             with open("meeting.wav", "wb") as f:
                 f.write(audio["bytes"])
             st.success("Recording completed!")
-            transcript = transcribe_audio("meeting.wav", client)
-            if transcript:
-                st.session_state.last_transcript = transcript
-                st.success("Transcription completed!")
-                st.write(transcript)
-
-    devices = get_input_devices()
-    selected_device = st.selectbox(
-        "Select input device",
-        devices if devices else ["[0] Default"],
-        label_visibility="collapsed"
-    )
-    device_id = int(selected_device.split("]")[0].replace("[", ""))
-
-    btn1, btn2 = st.columns([1,1])
-
-    with btn1:
-        if not st.session_state.is_recording:
-            if st.button("🔴 Start Recording", use_container_width=True):
-                if start_recording(device_index=device_id):
-                    st.session_state.is_recording = True
-                    st.session_state.last_transcript = ""
-                    st.rerun()
-        else:
-            st.button("Recording...", disabled=True, use_container_width=True)
-            with btn2:
-                if st.session_state.is_recording:
-                    if st.button("⏹️ Stop & Transcribe", use_container_width=True):
-                        with st.spinner("🎧 Transcribing entire meeting..."):
-                            temp_file = stop_recording_and_save("meeting_record.wav")
-                            st.session_state.is_recording = False
-                            if temp_file:
-                                transcript = transcribe_audio(temp_file, client)
-                                if transcript:
-                                    st.toast("✅ Meeting successfully recorded and transcribed!")
-                                    st.session_state.last_transcript = transcript
-                                    st.session_state.messages.append({
-                                        "role": "user",
-                                        "parts": [f"Meeting Transcript:\n{transcript}"]
-                                    })
-                                else:
-                                    st.toast("❌ Failed to transcribe the meeting.", icon="⚠️")
-                            st.rerun()
-                else:
-                    st.button("⏹️ Stop & Transcribe", disabled=True, use_container_width=True)
-                    
-        if st.session_state.is_recording:
-            st.markdown("""
-            <div class="audio-visualizer">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <div style="text-align:center; color:#ef4444; font-weight:bold; animation: pulse 2s infinite;">Recording Active...</div>
-            """, unsafe_allow_html=True)
+            with st.spinner("🎧 Transcribing..."):
+                try:
+                    transcript = transcribe_audio("meeting.wav", client)
+                    if transcript:
+                        st.session_state.last_transcript = transcript
+                        st.session_state.messages.append({
+                            "role": "user",
+                            "parts": [f"Meeting Transcript:\n{transcript}"]
+                        })
+                        st.success("Transcription completed!")
+                        st.write(transcript)
+                    else:
+                        st.error("Transcription returned an empty result.")
+                except Exception as e:
+                    st.error(f"Transcription failed: {e}")
+                    st.code(traceback.format_exc())
 
     with col_upload:
         st.markdown("#### 📁 File Upload", unsafe_allow_html=True)
-        st.markdown("<p style='color: #94A3B8; font-size: 0.9rem;'>Upload an existing audio file.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #94A3B8; font-size: 0.9rem;'>Upload an existing audio file (e.g. a Zoom/Meet recording).</p>", unsafe_allow_html=True)
         audio_upload = st.file_uploader(
             "Drop your audio file here",
             type=["wav", "mp3", "m4a", "flac", "ogg"],
@@ -593,19 +554,23 @@ with tab_transcribe:
                 with open(upload_path, "wb") as f:
                     f.write(audio_upload.read())
                 with st.spinner("🎧 Transcribing uploaded audio..."):
-                    transcript = transcribe_audio(upload_path, client)
-                    if transcript:
-                        st.toast("✅ File successfully transcribed!")
-                        st.session_state.last_transcript = transcript
-                        st.session_state.messages.append({
-                            "role": "user",
-                            "parts": [f"Meeting Transcript:\n{transcript}"]
-                        })
-                    else:
-                        st.toast("❌ Could not transcribe the audio.", icon="⚠️")
+                    try:
+                        transcript = transcribe_audio(upload_path, client)
+                        if transcript:
+                            st.toast("✅ File successfully transcribed!")
+                            st.session_state.last_transcript = transcript
+                            st.session_state.messages.append({
+                                "role": "user",
+                                "parts": [f"Meeting Transcript:\n{transcript}"]
+                            })
+                        else:
+                            st.error("Transcription returned an empty result.")
+                    except Exception as e:
+                        st.error(f"Transcription failed: {e}")
+                        st.code(traceback.format_exc())
             else:
                 st.toast("ℹ️ Please upload an audio file first.")
-                
+
     if st.session_state.last_transcript:
         st.markdown("""
         <div class="response-card" style="margin-top: 2rem;">
@@ -645,19 +610,7 @@ with tab_chat:
             label_visibility="collapsed"
         )
 
-        btn_col1, btn_col2 = st.columns([1, 1])
-        with btn_col1:
-            generate_clicked = st.button("🚀 Generate Response", use_container_width=True)
-        with btn_col2:
-            if st.button("🔊 Play to Virtual Mic", use_container_width=True):
-                filename = st.session_state.last_audio_file
-                if filename and os.path.exists(filename):
-                    if play_audio_to_virtual_mic(filename, "CABLE Input"):
-                        st.toast("✅ Playing through virtual mic!")
-                    else:
-                        st.toast("⚠️ Could not find VB-CABLE. Check your audio devices.")
-                else:
-                    st.toast("ℹ️ Generate a response first to play audio.")
+        generate_clicked = st.button("🚀 Generate Response", use_container_width=True)
 
     with right_col:
         st.markdown("""
@@ -677,11 +630,12 @@ with tab_chat:
                     # Generate TTS audio
                     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
                     filename = f"response_{timestamp}.mp3"
-                    audio_file, audio_bytes = text_to_speech(response, filename)
-                    if audio_file:
-                        st.session_state.last_audio_file = audio_file
-                    if audio_bytes:
-                        st.session_state.last_audio_bytes = audio_bytes
+                    try:
+                        audio_file, audio_bytes = text_to_speech(response, filename)
+                        if audio_bytes:
+                            st.session_state.last_audio_bytes = audio_bytes
+                    except Exception as e:
+                        st.warning(f"Response generated, but text-to-speech failed: {e}")
         elif generate_clicked:
             st.warning("Please enter a message first.")
 
@@ -693,14 +647,14 @@ with tab_chat:
                 <div class="label">✦ {clean_mode} Response</div>
                 <div class="text">
             """, unsafe_allow_html=True)
-            
+
             # Streaming effect for the text
             if st.session_state.new_response:
                 st.write_stream(stream_text(st.session_state.last_response))
                 st.session_state.new_response = False
             else:
                 st.markdown(st.session_state.last_response)
-            
+
             st.markdown("</div></div>", unsafe_allow_html=True)
 
             # Audio player
@@ -728,7 +682,6 @@ with tab_history:
         if st.button("🗑️ Clear History", use_container_width=False):
             st.session_state.messages = []
             st.session_state.last_response = ""
-            st.session_state.last_audio_file = ""
             st.session_state.last_audio_bytes = None
             st.rerun()
 
@@ -781,7 +734,7 @@ with tab_mom:
                 st.session_state.new_mom = True
         else:
             st.toast("ℹ️ Have a conversation first, then generate minutes!")
-            
+
     if st.session_state.mom_text:
         st.markdown(f"""
         <div class="response-card">
@@ -793,14 +746,14 @@ with tab_mom:
         else:
             st.markdown(st.session_state.mom_text)
         st.markdown("</div>", unsafe_allow_html=True)
-        
+
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("💾 Save Current Meeting to Archive", use_container_width=True):
             title = f"Meeting - {datetime.now().strftime('%b %d, %Y')}"
             if st.session_state.messages:
                 try:
                     title = st.session_state.messages[0]['parts'][0][:40] + "..."
-                except:
+                except Exception:
                     pass
             with st.spinner("💾 Saving to database..."):
                 db_utils.save_meeting(
@@ -810,7 +763,7 @@ with tab_mom:
                     chat_messages=st.session_state.messages
                 )
                 st.toast("✅ Meeting saved to Archive!")
-                
+
 # ========================= TAB: ARCHIVE =========================
 with tab_archive:
     st.markdown("""
@@ -819,7 +772,7 @@ with tab_archive:
         <h3>Meeting Archive</h3>
     </div>
     """, unsafe_allow_html=True)
-    
+
     meetings = db_utils.get_all_meetings()
     if not meetings:
         st.info("No saved meetings found in the archive.")
@@ -830,18 +783,18 @@ with tab_archive:
                 with col1:
                     if st.button("Load Data", key=f"load_{m['id']}"):
                         st.session_state[f"show_details_{m['id']}"] = True
-                        
+
                 if st.session_state.get(f"show_details_{m['id']}", False):
                     details = db_utils.get_meeting(m['id'])
                     if details:
                         if details['transcript']:
                             st.markdown("#### 📝 Transcript")
                             st.markdown(f'<div class="response-card"><div class="text">{details["transcript"]}</div></div>', unsafe_allow_html=True)
-                            
+
                         if details['mom']:
                             st.markdown("#### 📋 Minutes of the Meeting")
                             st.markdown(f'<div class="response-card"><div class="text">{details["mom"]}</div></div>', unsafe_allow_html=True)
-                            
+
                         if details['chats']:
                             st.markdown("#### 💬 Chat History")
                             for chat in details['chats']:
