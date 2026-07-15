@@ -65,7 +65,7 @@ def generate_response_with_history(user_input, role_context=None):
                 role=m["role"],
                 parts=[types.Part.from_text(text=p) for p in m["parts"]]
             ))
-        chat = client.chats.create(model="gemini-2.5-flash", history=history)
+        chat = client.chats.create(model="gemini-3.5-flash", history=history)
         full_prompt = (role_context + "\n\n" if role_context else "") + user_input
 
         max_retries = 3
@@ -107,7 +107,7 @@ Conversation:
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-3.5-flash",
                 contents=prompt
             )
             return response.text
