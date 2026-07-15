@@ -508,22 +508,43 @@ with tab_transcribe:
         st.markdown("<p style='color: #94A3B8; font-size: 0.9rem;'>Select your meeting audio device and record live.</p>", unsafe_allow_html=True)
         
         input_devices = get_input_devices()
-        if not input_devices:
-            st.warning("No input devices found.")
+
+if (
+    not input_devices
+    or "Recording unavailable" in input_devices[0]
+):
+
+    st.info("🎙️ Live recording is not available on Streamlit Cloud.")
+
+    btn1, btn2 = st.columns([1,1])
+
+    with btn1:
+        st.button("🔴 Start Recording", disabled=True, use_container_width=True)
+
+    with btn2:
+        st.button("⏹️ Stop & Transcribe", disabled=True, use_container_width=True)
+
+else:
+
+    selected_device = st.selectbox(
+        "Audio Input Device",
+        input_devices,
+        label_visibility="collapsed"
+    )
+
+    device_id = int(selected_device.split("]")[0].replace("[", ""))
+
+    btn1, btn2 = st.columns([1,1])
+
+    with btn1:
+        if not st.session_state.is_recording:
+            if st.button("🔴 Start Recording", use_container_width=True):
+                if start_recording(device_index=device_id):
+                    st.session_state.is_recording = True
+                    st.session_state.last_transcript = ""
+                    st.rerun()
         else:
-            selected_device = st.selectbox("Audio Input Device", input_devices, label_visibility="collapsed")
-            device_id = int(selected_device.split("]")[0].replace("[", ""))
-            
-            btn1, btn2 = st.columns([1,1])
-            with btn1:
-                if not st.session_state.is_recording:
-                    if st.button("🔴 Start Recording", use_container_width=True):
-                        if start_recording(device_index=device_id):
-                            st.session_state.is_recording = True
-                            st.session_state.last_transcript = ""
-                            st.rerun()
-                else:
-                    st.button("Recording...", disabled=True, use_container_width=True)
+            st.button("Recording...", disabled=True, use_container_width=True)
             with btn2:
                 if st.session_state.is_recording:
                     if st.button("⏹️ Stop & Transcribe", use_container_width=True):
