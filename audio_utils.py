@@ -45,8 +45,7 @@ def play_audio_to_virtual_mic(audio_filepath, virtual_mic_name):
 
 
 def get_input_devices():
-    """Return dummy device list."""
-    return ["Recording unavailable on Streamlit Cloud"]
+    return ["[0] Recording unavailable on Streamlit Cloud"]
 
 
 def start_recording(device_index=None, samplerate=16000, channels=1):
