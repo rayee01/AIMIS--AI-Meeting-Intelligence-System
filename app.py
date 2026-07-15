@@ -526,19 +526,12 @@ with tab_transcribe:
                 st.success("Transcription completed!")
                 st.write(transcript)
 
-    device_id = int(selected_device.split("]")[0].replace("[", ""))
-
-    btn1, btn2 = st.columns([1,1])
-
-    with btn1:
-        if not st.session_state.is_recording:
-            if st.button("🔴 Start Recording", use_container_width=True):
-                if start_recording(device_index=device_id):
-                    st.session_state.is_recording = True
-                    st.session_state.last_transcript = ""
-                    st.rerun()
-        else:
-            st.button("Recording...", disabled=True, use_container_width=True)
+    devices = get_input_devices()
+    selected_device = st.selectbox(
+        "Select input device",
+        devices if devices else ["[0] Default"],
+        label_visibility="collapsed"
+    )
     device_id = int(selected_device.split("]")[0].replace("[", ""))
 
     btn1, btn2 = st.columns([1,1])
