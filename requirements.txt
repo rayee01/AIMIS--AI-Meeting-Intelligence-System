@@ -6,5 +6,4 @@ soundfile
 numpy
 SpeechRecognition
 pydub
-soundcard
 python-dotenv
