@@ -1,3 +1,4 @@
+from streamlit_mic_recorder import mic_recorder
 import streamlit as st
 from google import genai
 from google.genai import types
@@ -507,7 +508,7 @@ with tab_transcribe:
         st.markdown("#### 🔴 Live Recording", unsafe_allow_html=True)
         st.markdown("<p style='color: #94A3B8; font-size: 0.9rem;'>Select your meeting audio device and record live.</p>", unsafe_allow_html=True)
         
-        input_devices = get_input_devices()
+       input_devices = get_input_devices()
 
 if (
     not input_devices
@@ -532,6 +533,19 @@ else:
         label_visibility="collapsed"
     )
 
+    device_id = int(selected_device.split("]")[0].replace("[", ""))
+
+    btn1, btn2 = st.columns([1,1])
+
+    with btn1:
+        if not st.session_state.is_recording:
+            if st.button("🔴 Start Recording", use_container_width=True):
+                if start_recording(device_index=device_id):
+                    st.session_state.is_recording = True
+                    st.session_state.last_transcript = ""
+                    st.rerun()
+        else:
+            st.button("Recording...", disabled=True, use_container_width=True)
     device_id = int(selected_device.split("]")[0].replace("[", ""))
 
     btn1, btn2 = st.columns([1,1])
