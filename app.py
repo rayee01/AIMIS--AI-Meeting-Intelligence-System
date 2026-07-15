@@ -504,45 +504,32 @@ with tab_transcribe:
 
     col_live, col_upload = st.columns([1, 1], gap="large")
     
-    with col_live:
+   with col_live:
     st.markdown("#### 🔴 Live Recording", unsafe_allow_html=True)
     st.markdown(
-        "<p style='color: #94A3B8; font-size: 0.9rem;'>Select your meeting audio device and record live.</p>",
+        "<p style='color: #94A3B8; font-size: 0.9rem;'>Record directly from your browser.</p>",
         unsafe_allow_html=True,
     )
 
-    input_devices = get_input_devices()
+    audio = mic_recorder(
+        start_prompt="🎙️ Start Recording",
+        stop_prompt="⏹️ Stop Recording",
+        just_once=True,
+        use_container_width=True,
+    )
 
-    if (
-        not input_devices
-        or "Recording unavailable" in input_devices[0]
-    ):
+    if audio:
+        with open("meeting.wav", "wb") as f:
+            f.write(audio["bytes"])
 
-        st.info("🎙️ Live recording is not available on Streamlit Cloud.")
+        st.success("Recording completed!")
 
-        btn1, btn2 = st.columns([1, 1])
+        transcript = transcribe_audio("meeting.wav", client)
 
-        with btn1:
-            st.button(
-                "🔴 Start Recording",
-                disabled=True,
-                use_container_width=True
-            )
-
-        with btn2:
-            st.button(
-                "⏹️ Stop & Transcribe",
-                disabled=True,
-                use_container_width=True
-            )
-
-    else:
-
-        selected_device = st.selectbox(
-            "Audio Input Device",
-            input_devices,
-            label_visibility="collapsed"
-        )
+        if transcript:
+            st.session_state.last_transcript = transcript
+            st.success("Transcription completed!")
+            st.write(transcript)
     device_id = int(selected_device.split("]")[0].replace("[", ""))
 
     btn1, btn2 = st.columns([1,1])
